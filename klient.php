@@ -3,9 +3,9 @@
 session_start();
 
 if(!isset($_SESSION['id_klienta'])){
-    exit("?");
+    die("?");
 }
 
-echo $_SESSION['id_klienta'];
+$id_klienta = $_SESSION['id_klienta'];
 
 ?>
