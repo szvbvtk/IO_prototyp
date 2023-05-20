@@ -1,0 +1,33 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+
+  .btn_container {
+    display: flex;
+    gap: 20px;
+    z-index: 1;
+  }
+
+  .btn {
+    padding: 40px;
+    background-color: #2e2424;
+    color: #a8a5a5;
+    border: none;
+    border-radius: 33px;
+    font-size: 20px;
+  }
+
+  .form-container {
+    display: none;
+  }
+
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+  }
+
