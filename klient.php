@@ -73,7 +73,7 @@ $id_klienta = $_SESSION['id_klienta'];
     </div>
 
     <div class="oczekujace">
-        <h2>Oczekujące zlecenia</h2>
+        <h2>Aktywne zlecenia</h2>
         <?php
         include 'php/db_connector.php';
 
