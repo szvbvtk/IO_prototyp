@@ -78,7 +78,7 @@ $id_klienta = $_SESSION['id_klienta'];
         include 'php/db_connector.php';
 
         
-        $result = $conn->query("SELECT * FROM zlecenia WHERE idKlienta = $id_klienta AND status = 0");
+        $result = $conn->query("SELECT * FROM zlecenia WHERE idKlienta = $id_klienta AND status NOT IN (-1, 2)");
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
@@ -98,7 +98,26 @@ $id_klienta = $_SESSION['id_klienta'];
 
     <div class="historia">
         <h2>Historia zleceń</h2>
-        ji
+        <?php
+        include 'php/db_connector.php';
+
+        
+        $result = $conn->query("SELECT * FROM zlecenia WHERE idKlienta = $id_klienta AND status IN (-1, 2)");
+
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                echo '<div style="border: 1px dashed green; padding: 5px; margin-bottom: 5px;">';
+                echo "Model samochodu: " . $row['model'] . "<br>";
+                echo "Typ samochodu: " . $row['typ'] . "<br>";
+                echo "Opis: " . $row['opis'];
+                echo "</div>";
+            }
+        } else {
+            echo "Brak zrealizowanych zleceń.";
+        }
+
+        $conn->close();
+        ?>
     </div>
 </body>
 </html>

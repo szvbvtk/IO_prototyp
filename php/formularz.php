@@ -17,4 +17,8 @@ $stmt->bind_param("sssi", $model, $typ, $opis, $idKlienta);
 $stmt->execute();
 
 $conn->close();
+
+$referer = $_SERVER['HTTP_REFERER'];
+header("Location: $referer");
+exit();
 ?>

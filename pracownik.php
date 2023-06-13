@@ -118,6 +118,7 @@ $id_pracownika = $_SESSION['id_pracownika'];
                 echo "Typ samochodu: " . $row['typ'] . "<br>";
                 echo "Opis: " . $row['opis'];
                 echo "<form method='POST' action='php/akceptuj_zlecenie.php'><input type='hidden' name='id_zlecenia' value='" . $row['idZlecenia'] . "'><input type='submit' value='Akceptuj zlecenie'></form>";
+                echo "<form method='POST' action='php/odrzuc_zlecenie.php'><input type='hidden' name='id_zlecenia' value='" . $row['idZlecenia'] . "'><input type='submit' value='Odrzuć zlecenie'></form>";
                 echo "</div>";
             }
         } else {
@@ -143,6 +144,20 @@ $id_pracownika = $_SESSION['id_pracownika'];
                 echo "Model samochodu: " . $row['model'] . "<br>";
                 echo "Typ samochodu: " . $row['typ'] . "<br>";
                 echo "Opis: " . $row['opis'];
+                
+                $result2 = $conn->query("SELECT * FROM stanowiska");
+                if ($result2->num_rows > 0) {
+                    echo '<form method="POST" action="php/przypisz_stanowisko.php">';
+                    echo '<input type="hidden" name="id_zlecenia" value="' . $row['idZlecenia'] . '">';
+                    echo '<select name="stanowisko">';
+                    while ($row2 = $result2->fetch_assoc()) {
+                        echo '<option value="' . $row2['idStanowiska'] . '">' . $row2['nazwa'] . '</option>';
+                    }
+                    echo '</select>';
+                    echo '<input type="submit" value="Przypisz stanowisko">';
+                    echo '</form>';
+                }
+                echo "<form method='POST' action='php/zakoncz_zlecenie.php'><input type='hidden' name='id_zlecenia' value='" . $row['idZlecenia'] . "'><input type='submit' value='Zakończ zlecenie'></form>";
                 echo "</div>";
             }
         } else {
