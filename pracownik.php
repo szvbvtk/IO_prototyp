@@ -13,6 +13,7 @@ $id_pracownika = $_SESSION['id_pracownika'];
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="js/jquery_3.7.0.js"></script>
     <title>Zlecenie</title>
     <style>
         body {
@@ -52,9 +53,47 @@ $id_pracownika = $_SESSION['id_pracownika'];
         div{
             border: 1px solid black;
         }
+
+        #formularzStanowisko {
+            position: fixed;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            display: none;
+            padding: 10px;
+            border: 5px solid black;
+            z-index: 100;
+            top: 50%;
+            left: 50%;
+        }
     </style>
 </head>
 <body>
+<button id="pokazFormularz">Pokaż formularz</button>
+  
+  <div id="formularzStanowisko">
+    <h2>Formularz</h2>
+    <form action="php/dodaj_stanowisko.php" method="POST">
+      <label for="nazwa">Nazwa stanowiska:</label>
+      <input type="text" id="nazwa" name="nazwa" required>
+      <label for="typ">Typ stanowiska:</label>
+      <select id="typ" name="typ" required>
+        <?php 
+        include 'php/db_connector.php';
+        $result = $conn->query("SELECT * FROM typStanowiska");
+        while ($row = $result->fetch_assoc()) {
+            echo '<option value="' . $row['idTypuStanowiska'] . '">' . $row['nazwa'] . '</option>';
+        }
+        ?>
+      </select>
+      
+      <label for="opis">Opis:</label>
+      <textarea id="opis" name="opis" required></textarea>
+      
+      <button type="submit">Utwórz stanowisko</button>
+    </form>
+  </div>
+  <script src="js/stanowiskoForm.js"></script>
+
     <div class="formularz">
         <h1>Dodaj część do zlecenia</h1>
 
