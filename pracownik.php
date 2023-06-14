@@ -15,57 +15,7 @@ $id_pracownika = $_SESSION['id_pracownika'];
 <head>
     <script src="js/jquery_3.7.0.js"></script>
     <title>Zlecenie</title>
-    <style>
-        body {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-
-        .formularz {
-            grid-column: 1 / 2;
-        }
-
-        .oczekujace {
-            grid-column: 2 / 3;
-        }
-
-        .historia {
-            grid-column: 3 / 4;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="submit"] {
-            display: block;
-            margin-top: 10px;
-        }
-        div{
-            border: 1px solid black;
-        }
-
-        #formularzStanowisko {
-            position: fixed;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            display: none;
-            padding: 10px;
-            border: 5px solid black;
-            z-index: 100;
-            top: 50%;
-            left: 50%;
-        }
-    </style>
+    <link rel="stylesheet" href="css/pracownik.css">
 </head>
 <body>
 <button id="pokazFormularz">Pokaż formularz</button>

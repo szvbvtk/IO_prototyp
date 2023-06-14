@@ -15,45 +15,7 @@ $id_klienta = $_SESSION['id_klienta'];
 <html>
 <head>
     <title>Zlecenie</title>
-    <style>
-        body {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 20px;
-        }
-
-        .formularz {
-            grid-column: 1 / 2;
-        }
-
-        .oczekujace {
-            grid-column: 2 / 3;
-        }
-
-        .historia {
-            grid-column: 3 / 4;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
-        label {
-            font-weight: bold;
-        }
-
-        input[type="submit"] {
-            display: block;
-            margin-top: 10px;
-        }
-        div{
-            border: 1px solid black;
-        }
-    </style>
+    <link rel="stylesheet" href="css/klient.css">
 </head>
 <body>
     <div class="formularz">
@@ -78,14 +40,16 @@ $id_klienta = $_SESSION['id_klienta'];
         include 'php/db_connector.php';
 
         
-        $result = $conn->query("SELECT * FROM zlecenia WHERE idKlienta = $id_klienta AND status NOT IN (-1, 2)");
+        $result = $conn->query("SELECT * FROM zlecenia JOIN statusTyp ON zlecenia.status = statusTyp.idTypu WHERE zlecenia.idKlienta = $id_klienta AND zlecenia.status NOT IN (-1, 2); ");
+
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div style="border: 1px dashed green; padding: 5px; margin-bottom: 5px;">';
                 echo "Model samochodu: " . $row['model'] . "<br>";
                 echo "Typ samochodu: " . $row['typ'] . "<br>";
-                echo "Opis: " . $row['opis'];
+                echo "Opis: " . $row['opis'] . "<br>";
+                echo "Status: " . $row['nazwa_statusu'];
                 echo "</div>";
             }
         } else {
@@ -102,14 +66,15 @@ $id_klienta = $_SESSION['id_klienta'];
         include 'php/db_connector.php';
 
         
-        $result = $conn->query("SELECT * FROM zlecenia WHERE idKlienta = $id_klienta AND status IN (-1, 2)");
+        $result = $conn->query("SELECT * FROM zlecenia JOIN statusTyp ON zlecenia.status = statusTyp.idTypu WHERE zlecenia.idKlienta = $id_klienta AND zlecenia.status IN (-1, 2); ");
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 echo '<div style="border: 1px dashed green; padding: 5px; margin-bottom: 5px;">';
                 echo "Model samochodu: " . $row['model'] . "<br>";
                 echo "Typ samochodu: " . $row['typ'] . "<br>";
-                echo "Opis: " . $row['opis'];
+                echo "Opis: " . $row['opis'] . "<br>";
+                echo "Status: " . $row['nazwa_statusu'];
                 echo "</div>";
             }
         } else {

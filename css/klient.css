@@ -1,0 +1,37 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+}
+
+.formularz {
+    grid-column: 1 / 2;
+}
+
+.oczekujace {
+    grid-column: 2 / 3;
+}
+
+.historia {
+    grid-column: 3 / 4;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="submit"] {
+    display: block;
+    margin-top: 10px;
+}
+div{
+    border: 1px solid black;
+}
