@@ -18,7 +18,7 @@ $id_pracownika = $_SESSION['id_pracownika'];
     <link rel="stylesheet" href="css/pracownik.css">
 </head>
 <body>
-<button id="pokazFormularz">Pokaż formularz</button>
+<button id="pokazFormularz">Dodaj stanowisko</button>
   
   <div id="formularzStanowisko">
     <h2>Formularz</h2>
